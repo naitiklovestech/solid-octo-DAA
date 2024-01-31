@@ -1,39 +1,50 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
+#include <stdio.h>
 
-bool binarySearch(const std::vector<int>& arr, int key, int& comparisons) {
-    int low = 0;
-    int high = arr.size() - 1;
+int binarySearch(int arr[], int n, int key, int *comparisons)
+{
+    int low = 0, high = n - 1;
 
-    while (low <= high) {
+    while (low <= high)
+    {
+        (*comparisons)++; 
+
         int mid = low + (high - low) / 2;
-        comparisons++;
 
-        if (arr[mid] == key) {
-            return true; // Element found
-        } else if (arr[mid] < key) {
-            low = mid + 1; // Search in the right half
-        } else {
-            high = mid - 1; // Search in the left half
+        if (arr[mid] == key)
+        {
+            return mid;
+        }
+        else if (arr[mid] < key)
+        {
+            low = mid + 1; 
+        }
+        else
+        {
+            high = mid - 1; 
         }
     }
-
-    return false; // Element not found
+    return -1; 
 }
 
-int main() {
-    std::vector<int> arr = {2, 4, 6, 8, 10, 12, 14, 16};
-    int key = 10;
+int main()
+{
+    int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int key = 5;
     int comparisons = 0;
 
-    if (binarySearch(arr, key, comparisons)) {
-        std::cout << "Element found!" << std::endl;
-    } else {
-        std::cout << "Element not found!" << std::endl;
+    int index = binarySearch(arr, n, key, &comparisons);
+
+    if (index != -1)
+    {
+        printf("Element %d found at index %d\n", key, index);
+    }
+    else
+    {
+        printf("Element %d not found in the array\n", key);
     }
 
-    std::cout << "Total comparisons: " << comparisons << std::endl;
+    printf("Total comparisons: %d\n", comparisons);
 
     return 0;
 }
