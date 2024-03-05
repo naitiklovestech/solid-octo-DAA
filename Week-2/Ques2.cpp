@@ -3,42 +3,64 @@
 #include <algorithm>
 using namespace std;
 
-vector<int> findTripletIndices(vector<int>& arr) {
+vector<int> findTripletIndices(vector<int>& arr) 
+{
     int n = arr.size();
-    for (int i = 0; i < n - 2; ++i) {
+
+    for (int i = 0; i < n - 2; ++i) 
+    {
         int left = i + 1, right = n - 1;
-        while (left < right) {
+
+        while (left < right) 
+        {
             int sum = arr[i] + arr[right];
-            if (sum == arr[left]) {
+
+            if (sum == arr[left]) 
+            {
                 return {i, left, right};
-            } else if (sum < arr[left]) {
+            } 
+            else if (sum < arr[left]) 
+            {
                 right--;
-            } else {
+            }
+            else 
+            {
                 left++;
             }
         }
     }
-    return {}; // No triplet found
+
+    return {};
 }
 
-int main() {
+int main() 
+{
     int T;
     cin >> T;
-    while (T--) {
+
+    while (T--) 
+    {
         int n;
         cin >> n;
+
         vector<int> arr(n);
-        for (int i = 0; i < n; ++i) {
+
+        for (int i = 0; i < n; ++i) 
+        {
             cin >> arr[i];
         }
 
         vector<int> indices = findTripletIndices(arr);
 
-        if (indices.empty()) {
+        if (indices.empty()) 
+        {
             cout << "No sequence found\n";
-        } else {
+        } 
+        else 
+        {
             cout << indices[0] << " " << indices[1] << " " << indices[2] << endl;
         }
     }
+    
     return 0;
 }
