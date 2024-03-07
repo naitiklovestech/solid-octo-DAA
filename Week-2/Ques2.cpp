@@ -17,7 +17,7 @@ vector<int> findTripletIndices(vector<int>& arr)
 
             if (sum == arr[left]) 
             {
-                return {i, left, right};
+                return ({i, left, right});
             } 
             else if (sum < arr[left]) 
             {
@@ -30,7 +30,7 @@ vector<int> findTripletIndices(vector<int>& arr)
         }
     }
 
-    return {};
+    return ({});
 }
 
 int main() 
